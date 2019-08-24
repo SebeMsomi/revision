@@ -23,19 +23,24 @@ public class OrganisationUserRepositoryImpl implements OrganisationUserRepositor
     //TODO: Implement body
     @Override
     public OrganisationUser create(OrganisationUser organisationUser) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
+        organisationUserDB.add(organisationUser);
+        return organisationUser;
     }
 
     //TODO: Implement body
     @Override
     public OrganisationUser read(String orgCode, String userEmail) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      //  throw new UnsupportedOperationException("Not supported yet.");
+        return organisationUserDB.stream().filter(organisationUser -> orgCode.equalsIgnoreCase(orgCode))
+                .findAny().orElse(null);
     }
 
     //TODO: Implement body
     @Override
     public OrganisationUser update(OrganisationUser organisationUser) {
         throw new UnsupportedOperationException("Not supported yet.");
+
     }
 
     //TODO: Implement body
@@ -47,7 +52,8 @@ public class OrganisationUserRepositoryImpl implements OrganisationUserRepositor
     //TODO: Implement body
     @Override
     public Set<OrganisationUser> getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return organisationUserDB;
+       // throw new UnsupportedOperationException("Not supported yet.");
     }
 
 

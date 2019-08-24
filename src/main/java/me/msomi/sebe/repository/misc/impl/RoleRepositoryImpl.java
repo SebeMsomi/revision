@@ -24,26 +24,25 @@ public class RoleRepositoryImpl implements RoleRepository {
     //TODO: Implement body
     @Override
     public Role create(Role role) {
-        roleDB.add(role);
+        this.roleDB.add(role);
         return role;
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     //TODO: Implement body
     @Override
     public Role read(String id) {
+        return this.roleDB.stream().filter(role -> role.getRoleId().trim()
+        .equals(id)).findAny().orElse(null);
 
-        return roleDB.stream().filter(role -> role.getRoleId() == id).findAny().orElse(null);
     }
 
     //TODO: Implement body
     @Override
     public Role update(Role role) {
-        //throw new UnsupportedOperationException("Not supported yet.");
         Role role1 = read(role.getRoleId());
         if(role1 != null)
         {
-            roleDB.remove(role1.getRoleId());
+            this.roleDB.remove(role1);
             return create(role);
         }
         return null;
@@ -52,18 +51,14 @@ public class RoleRepositoryImpl implements RoleRepository {
     //TODO: Implement body
     @Override
     public void delete(String roleId) {
-        //throw new UnsupportedOperationException("Not supported yet.");
-        Role role = read(roleId);
-        if(role != null)
-        {
-            roleDB.remove(role);
-        }
+       Role role = read(roleId);
+       if(role != null)
+           this.roleDB.remove(role);
     }
 
     //TODO: Implement body
     @Override
     public Set<Role> getAll() {
-        //throw new UnsupportedOperationException("Not supported yet.");
-        return roleDB;
+       return this.roleDB;
     }
 }

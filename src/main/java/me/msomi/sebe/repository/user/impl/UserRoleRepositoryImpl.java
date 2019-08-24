@@ -23,45 +23,42 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
     //TODO: Implement body
     @Override
     public UserRole create(UserRole userRole) {
-        //throw new UnsupportedOperationException("Not supported yet.");
-        userRoleDB.add(userRole);
+        this.userRoleDB.add(userRole);
         return userRole;
+
     }
 
     //TODO: Implement body
     @Override
     public UserRole read(UserRole userRole) {
-        //throw new UnsupportedOperationException("Not supported yet.");
-        return userRoleDB.stream().filter(userRole1 -> userRole.equals(userRole)).findAny().orElse(null);
+       return this.userRoleDB.stream()
+               .filter(userRole1 -> userRole1.getRoleId().trim().equals(userRole))
+               .findAny().orElse(null);
     }
 
     //TODO: Implement body
     @Override
     public UserRole update(UserRole userRole) {
-       /* UserRole userRole1 = read(userRole.getUserEmail());
-        if(userRole1 != null)
-        {
-            userRoleDB.remove(userRole1);
-            return create(userRole1);
-        }
-        return null;*/
-        throw new UnsupportedOperationException("Not supported yet.");
+       UserRole userRole1 = read(userRole);
+       if(userRole1 != null)
+       {
+           this.userRoleDB.remove(userRole1);
+           return userRole;
+       }
+       return null;
     }
 
     //TODO: Implement body
     @Override
     public void delete(UserRole userRole) {
-        //throw new UnsupportedOperationException("Not supported yet.");
         UserRole userRole1 = read(userRole);
         if(userRole1 != null)
-        {
-            userRoleDB.remove(userRole1);
-        }
+            this.userRoleDB.remove(userRole1);
     }
 
     //TODO: Implement body
     @Override
     public Set<UserRole> getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return this.userRoleDB;
     }
 }

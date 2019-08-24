@@ -20,7 +20,7 @@ public class RaceServiceImplTest {
 
     @Test
     public void create() {
-        Race race = RaceFactory.buildRace("Black");
+        Race race = RaceFactory.buildRace("Black", "B");
         service.create(race);
         Race race1 = service.read(race.getRaceId());
         Assert.assertNotNull(race1);
@@ -28,7 +28,7 @@ public class RaceServiceImplTest {
 
     @Test
     public void read() {
-        Race race = RaceFactory.buildRace("Black");
+        Race race = RaceFactory.buildRace("Black", "B");
         service.create(race);
         Race race1 = service.read(race.getRaceId());
         Assert.assertNotNull(race1);
@@ -40,7 +40,7 @@ public class RaceServiceImplTest {
 
     @Test
     public void delete() {
-        Race race = RaceFactory.buildRace("Black");
+        Race race = RaceFactory.buildRace("Black", "B");
         service.create(race);
         Race race1 = service.read(race.getRaceId());
         Assert.assertNotNull(race1);

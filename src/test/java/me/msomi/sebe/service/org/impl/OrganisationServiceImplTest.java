@@ -20,11 +20,17 @@ public class OrganisationServiceImplTest {
 
     @Test
     public void create() {
-        Organisation organisation = OrganisationFactory.buildOrganisation("Amazon","101");
+        /*Organisation organisation = OrganisationFactory.buildOrganisation("Amazon","101");
         this.service.create(organisation);
 
         Organisation organisation1 = this.service.read(organisation.getOrgCode());
-        Assert.assertNotNull(organisation1);
+        Assert.assertNotNull(organisation1);*/
+        Organisation gender = OrganisationFactory.buildOrganisation("Am","200");
+
+        service.create(gender);
+
+        Organisation gender1 = service.read(gender.getOrgCode());
+        Assert.assertNotNull(gender1);
 
     }
 

@@ -8,7 +8,7 @@ public class RoleFactoryTest {
 
     @Test
     public void buildRole() {
-        Role role = RoleFactory.buildRole(" Programmer ");
+        Role role = RoleFactory.buildRole(" Programmer ","101");
         Assert.assertNotNull(role);
 
         System.out.println("The role is a " + role);

@@ -23,16 +23,16 @@ public class UserDemographyRepositoryImpl implements UserDemographyRepository {
     //TODO: Implement body
     @Override
     public UserDemography create(UserDemography userDemography) {
-        userDemographyDB.add(userDemography);
+        this.userDemographyDB.add(userDemography);
         return userDemography;
-        //throw new UnsupportedOperationException("Not supported yet.");
+
     }
 
     //TODO: Implement body
     @Override
     public UserDemography read(String userEmail) {
-        return userDemographyDB.stream().filter(userDemography -> userEmail.equalsIgnoreCase(userDemography.getUserEmail())).findAny().orElse(null);
-        //throw new UnsupportedOperationException("Not supported yet.");
+        return this.userDemographyDB.stream().filter(userDemography -> userDemography.getUserEmail()
+        .trim().equals(userEmail)).findAny().orElse(null);
     }
 
     //TODO: Implement body
@@ -41,11 +41,10 @@ public class UserDemographyRepositoryImpl implements UserDemographyRepository {
         UserDemography userDemography1 = read(userDemography.getUserEmail());
         if(userDemography1 != null)
         {
-            userDemographyDB.remove(userDemography1);
-            return create(userDemography1);
+            this.userDemographyDB.remove(userDemography1);
+            return create(userDemography);
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     //TODO: Implement body
@@ -53,16 +52,12 @@ public class UserDemographyRepositoryImpl implements UserDemographyRepository {
     public void delete(String userEmail) {
         UserDemography userDemography = read(userEmail);
         if(userDemography != null)
-        {
-            userDemographyDB.remove(userDemography);
-        }
-        //throw new UnsupportedOperationException("Not supported yet.");
+            this.userDemographyDB.remove(userDemography);
     }
 
     //TODO: Implement body
     @Override
     public Set<UserDemography> getAll() {
-        return userDemographyDB;
-        //throw new UnsupportedOperationException("Not supported yet.");
+       return this.userDemographyDB;
     }
 }

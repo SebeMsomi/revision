@@ -42,6 +42,7 @@ public class OrganisationServiceImpl implements OrganisationService {
 
     @Override
     public Set<Organisation> getAll() {
-        return this.organisationRepository.getAll();
+//        return this.organisationRepository.getAll();
+        return organisationRepository.getAll();
     }
 }

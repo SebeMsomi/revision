@@ -8,7 +8,7 @@ public class RaceFactoryTest {
 
     @Test
     public void buildRace() {
-        Race race = RaceFactory.buildRace("Black");
+        Race race = RaceFactory.buildRace("Black", "B");
 
         Assert.assertNotNull(race);
         System.out.println("The race is: " + race );

@@ -11,10 +11,18 @@ import java.util.Set;
 
 public class GenderRepositoryImplTest {
     private GenderRepository repository;
+    private Gender gender;
+
+    private Gender getGender()
+    {
+        Set<Gender> genders = this.repository.getAll();
+        return genders.iterator().next();
+    }
 
     @Before
     public void setUp() throws Exception {
         this.repository = GenderRepositoryImpl.genderRepository();
+        this.gender = GenderFactory.buildGender("Male", "M");
     }
 
 
@@ -22,53 +30,46 @@ public class GenderRepositoryImplTest {
 
     @Test
     public void create() {
-        Gender gender = GenderFactory.buildGender("Male");
-        repository.create(gender);
+      Gender gender1 = this.repository.create(this.gender);
+      System.out.println("In Create, " + gender1);
+      getAll();
+      Assert.assertSame(gender1, this.gender);
 
-        Gender gender1 = repository.read(gender.getGenderId());
-        Assert.assertNotNull(gender1);
-        System.out.println("In create.... " + gender1);
     }
 
     @Test
     public void read() {
-            Gender gender = GenderFactory.buildGender("Male");
-            repository.create(gender);
+        Gender gender1 = GenderFactory.buildGender("Male","M");
+        this.repository.create(gender1);
 
-            Gender gender1 = repository.read(gender.getGenderId());
-            Assert.assertNotNull(gender1);
+        System.out.println("In Read, Read... " + gender1.getGenderId());
 
-            System.out.println("In read.... " + gender1);
+       // Gender gender2 = this.repository.read(gender1.getGenderId());
+        Assert.assertNotNull(gender1);
+        getAll();
+
     }
-
     @Test
     public void update() {
-            Gender gender = GenderFactory.buildGender("Male");
-            repository.create(gender);
-
-            Gender updated = GenderFactory.buildGender("Female");
-            repository.update(updated);
-
-            Assert.assertNotEquals(gender.getGenderDescription(),updated.getGenderDescription());
+            String newname = "Female";
+            Gender updated = new Gender.Builder().genderDescription(newname).build();
+            this.repository.update(updated);
+            System.out.println("In update, Updated..." + updated.getGenderDescription());
+            getAll();
     }
 
     @Test
     public void delete() {
-            Gender gender = GenderFactory.buildGender("Male");
-            repository.create(gender);
+        Gender gender1 = getGender();
+        this.repository.delete(gender1.getGenderId());
+        Assert.assertNotNull(gender1);
+        getAll();
 
-            Gender gender1 = repository.read(gender.getGenderId());
-            Assert.assertNotNull(gender1);
-            repository.delete(gender.getGenderId());
-
-            Gender deleted = repository.read(gender.getGenderId());
-            Assert.assertNotNull(deleted);
     }
 
     @Test
     public void getAll() {
-        Set<Gender> genderSet = repository.getAll();
-        Assert.assertNotNull(genderSet);
-        System.out.println("get all.... " + genderSet);
+        Set<Gender> all = this.repository.getAll();
+        System.out.println("In GET ALL, ALL " + all);
     }
 }

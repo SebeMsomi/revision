@@ -20,7 +20,7 @@ public class GenderServiceImplTest {
 
     @Test
     public void create() {
-        Gender gender = GenderFactory.buildGender("Male");
+        Gender gender = GenderFactory.buildGender("Male", "F");
         service.create(gender);
 
         Gender gender1 = service.read(gender.getGenderId());
@@ -29,7 +29,7 @@ public class GenderServiceImplTest {
 
     @Test
     public void read() {
-        Gender gender = GenderFactory.buildGender("Male");
+        Gender gender = GenderFactory.buildGender("Male", "M");
         service.create(gender);
         Gender gender1 = service.read(gender.getGenderId());
         Assert.assertNotNull(gender1);
@@ -37,7 +37,7 @@ public class GenderServiceImplTest {
 
     @Test
     public void update() {
-        Gender gender = GenderFactory.buildGender("Male");
+        Gender gender = GenderFactory.buildGender("Male", "M");
         service.create(gender);
 
         Gender gender1 = service.read(gender.getGenderId());;
@@ -46,7 +46,7 @@ public class GenderServiceImplTest {
 
     @Test
     public void delete() {
-        Gender gender = GenderFactory.buildGender("Male");
+        Gender gender = GenderFactory.buildGender("Male","M");
         service.create(gender);
         Gender gender1 = service.read(gender.getGenderId());
         Assert.assertNotNull(gender1);

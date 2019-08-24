@@ -62,7 +62,7 @@ public class OrganisationRepositoryImpl implements OrganisationRepository {
     //TODO: Implement body
     @Override
     public Set<Organisation> getAll() {
-        return organisationDB;
+        return this.organisationDB;
         //throw new UnsupportedOperationException("Not supported yet.");
     }
 }

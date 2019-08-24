@@ -20,7 +20,7 @@ public class RoleServiceImplTest {
 
     @Test
     public void create() {
-        Role role = RoleFactory.buildRole("Sebe");
+        Role role = RoleFactory.buildRole("Sebe","101");
         this.service.create(role);
 
         Role role1 = this.service.read(role.getRoleId());
@@ -29,7 +29,7 @@ public class RoleServiceImplTest {
 
     @Test
     public void read() {
-        Role role = RoleFactory.buildRole("Sebe");
+        Role role = RoleFactory.buildRole("Sebe","101");
         this.service.read(role.getRoleId());
 
         Assert.assertNotNull(role);
@@ -37,10 +37,10 @@ public class RoleServiceImplTest {
 
     @Test
     public void update() {
-        Role role = RoleFactory.buildRole("Sebe");
+        Role role = RoleFactory.buildRole("Sebe","101");
         this.service.create(role);
 
-        Role role1 = RoleFactory.buildRole("Sebza");
+        Role role1 = RoleFactory.buildRole("Sebza","102");
         this.service.update(role1);
 
         Assert.assertNotEquals(role1.getRoleName(),role.getRoleName());
@@ -48,7 +48,7 @@ public class RoleServiceImplTest {
 
     @Test
     public void delete() {
-        Role role = RoleFactory.buildRole("Sebe");
+        Role role = RoleFactory.buildRole("Sebe","102");
         this.service.delete(role.getRoleName());
         Assert.assertNotNull(role);
     }
